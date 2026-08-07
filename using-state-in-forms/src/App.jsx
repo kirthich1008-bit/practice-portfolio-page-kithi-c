@@ -16,6 +16,9 @@ function UserForm(){
       [name]: value,
     }));
   };
+
+  const isFeedbackFormEmpty =
+    formData.name === "" || formData.email === "" || formData.feedback === "";
   
   return(
     <div>
@@ -39,8 +42,13 @@ function UserForm(){
        
        <label>
        Feedback:
-       <input type="textarea" name="feedback" value={formData.feedback} onChange={handleChange} minLength="2" maxLength="200" />
+       <input type="textarea" name="feedback" value={formData.feedback} onChange={handleChange} maxLength="200" />
+       <span>
+            current count: {formData.feedback.length}{" "}
+            {/* {formData.feedback.length === 10 && <p>count has reached 10!</p>} */}
+          </span>
      </label>
+     <button type="submit" disabled={isFeedbackFormEmpty}>submit</button>
    </form>
    
    <h2>Preview</h2>
